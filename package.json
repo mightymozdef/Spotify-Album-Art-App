@@ -1,0 +1,20 @@
+{
+  "name": "spotify-app",
+  "version": "1.0.0",
+  "description": "Spotify Artist Album Art Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moezb95o/Spotify-Album-Art-App.git"
+  },
+  "author": "Moez Bhatti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moezb95o/Spotify-Album-Art-App/issues"
+  },
+  "homepage": "https://github.com/moezb95o/Spotify-Album-Art-App#readme"
+}
