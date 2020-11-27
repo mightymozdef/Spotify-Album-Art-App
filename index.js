@@ -1,9 +1,9 @@
-const http = require('http'),
-    https = require('https'),
-    fs = require('fs'),
-    url = require('url'),
-    path = require('path'),
-    querystring = require('querystring');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const url = require('url');
+const path = require('path');
+const querystring = require('querystring');
 
 const credentials = require('./auth/credentials.json');
 const authentication_cache = './auth/authentication-res.json';
@@ -11,7 +11,17 @@ const authentication_cache = './auth/authentication-res.json';
 const server_address = '127.0.0.1';
 const port = 3000;
 
+// album_dir used as the location of the directory for where the album art will be saved
+var album_dir = __dirname + '/album-art';
+
+// check to see if the folder exists - if not create it
+if (!fs.existsSync(album_dir)) {
+    fs.mkdirSync(album_dir);
+    console.log(`Album art directory created at ${album_dir}`);
+}
+
 let server = http.createServer((req, res) => {
+
     if (req.url === '/') {
         let search_stream = fs.createReadStream('./html/search-form.html', 'utf8');
         res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -72,7 +82,7 @@ let server = http.createServer((req, res) => {
                 type = "album",
                 q = user_input;
             const request = `${token_endpoint}?type=${type}&q=${q}&access_token=${access_token}`;
-            
+
             const req = https.request(request, res => {
                 console.log(`Sending Spotify API Request: Searching for ${q}...`);
                 album_art_retrieval(res);
